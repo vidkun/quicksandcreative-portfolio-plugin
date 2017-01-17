@@ -47,3 +47,29 @@ function create_project_type_tax() {
         )
     );
 }
+
+add_action( 'admin_init', 'portfolio_admin' );
+
+function portfolio_admin() {
+  add_meta_box( 'project_options_meta_box',
+        'Project Options',
+        'display_project_options_meta_box',
+        'portfolio', 'side', 'high'
+    );
+}
+
+function display_project_options_meta_box( $project ) {
+  // Retrieve current name of the Director and Movie Rating based on review ID
+    $project_link = esc_html( get_post_meta( $project->ID, 'project_link', true ) );
+    // $movie_rating = intval( get_post_meta( $movie_review->ID, 'movie_rating', true ) );
+    ?>
+    <table>
+      <tr>
+        <td style="width: 100%">Project Link</td>
+      </tr>
+      <tr>
+        <td style="width: 80%"><input type="text" size="80" name="project_link" value="<?php echo $project_link; ?>" /></td>
+      </tr>
+    </table>
+    <?php
+}
