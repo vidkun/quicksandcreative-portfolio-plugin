@@ -77,24 +77,28 @@ function display_project_options_meta_box( $project ) {
   <?php
 }
 
-function media_uploader_box() {
+function media_uploader_box( $project ) {
   wp_nonce_field( basename(__FILE__), 'project_gallery_meta_nonce' );
   global $post;
-  ?>
+  $project_images = get_post_meta( $project->ID, 'qc_gallery_id', true );
+  // $your_img_id = get_post_meta( $project->ID, 'qc_gallery_id', true );
 
+  // For convenience, see if the array is valid
+  $you_have_img = is_array( $project_images );
+  ?>
   <div class="project-gallery">
     <table class="form-table">
         <tr><td>
           <a class="gallery-add button" href="#" data-uploader-title="Add image(s) to project gallery" data-uploader-button-text="Add image(s)">Add image(s)</a>
 
           <ul id="gallery-metabox-list">
-          <?php if ($ids) : foreach ($ids as $key => $value) : $image = wp_get_attachment_image_src($value); ?>
+          <?php if ($you_have_img) : foreach ($project_images as $key => $value) : $image = wp_get_attachment_image_src($value); ?>
 
             <li class="project_gallery_image">
               <input type="hidden" name="qc_gallery_id[<?php echo $key; ?>]" value="<?php echo $value; ?>">
               <img class="image-preview" src="<?php echo $image[0]; ?>"><br />
-              <a class="change-image button button-small" href="#" data-uploader-title="Change image" data-uploader-button-text="Change image">Change image</a><br>
-              <small><a class="remove-image" href="#">Remove image</a></small>
+              <a class="change-image button button-small" href="#" data-uploader-title="Change image" data-uploader-button-text="Change image">Change</a>
+              <a class="remove-image button button-small" href="#">Remove</a>
             </li>
 
           <?php endforeach; endif; ?>

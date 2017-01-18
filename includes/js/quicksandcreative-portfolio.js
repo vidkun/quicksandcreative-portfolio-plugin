@@ -24,7 +24,7 @@ jQuery(function($) {
         attachment = attachment.toJSON(),
         index      = listIndex + (i + 1);
 
-        $('#gallery-metabox-list').append('<li class="project_gallery_image"><input type="hidden" name="qc_gallery_id[' + index + ']" value="' + attachment.id + '"><img class="image-preview" src="' + attachment.sizes.thumbnail.url + '"><br /><a class="change-image button button-small" href="#" data-uploader-title="Change image" data-uploader-button-text="Change image">Change image</a><br><small><a class="remove-image" href="#">Remove image</a></small></li>');
+        $('#gallery-metabox-list').append('<li class="project_gallery_image"><input type="hidden" name="qc_gallery_id[' + index + ']" value="' + attachment.id + '"><img class="image-preview" src="' + attachment.sizes.thumbnail.url + '"><br /><a class="change-image button button-small" href="#" data-uploader-title="Change image" data-uploader-button-text="Change image">Change</a><a class="remove-image button button-small" href="#">Remove</a></li>');
       });
     });
 
